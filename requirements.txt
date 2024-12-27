@@ -1,6 +1,6 @@
 # requirements.txt
+datetime
+pandas
 snowflake-snowpark-python
 streamlit
-pandas
 yfinance
-datetime
