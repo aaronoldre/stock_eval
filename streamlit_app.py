@@ -17,8 +17,13 @@ start_date = st.date_input('Stock Grant Date')
 # start_date = datetime(2020, 1, 1) 
 end_date = datetime.today()
 
-stock_data = yf.download(ticker, start = start_date, 
+try:
+    stock_data = yf.download(ticker, start = start_date, 
 				end = end_date) 
+    
+    st.line_chart(stock_data)
+except:
+    st.write('Enter values to seach')
 # math 
 
 # chart worth, and number of shares, find best day to have sold
