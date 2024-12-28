@@ -8,7 +8,8 @@ st.title(":dollar: Stock as Compenstation Evaluator :chart:")
 st.write("use to find high points in RSUs and Options when they vest")
 
 # prompt user for stocks and write to data frame
-df = pd.DataFrame({'Ticker', 'Grant Date', 'Num Shares', 'Grant Type', 'Current Value'})
+df = pd.DataFrame({'Ticker':[], 'Grant Date':[], 'Num Shares':[], 'Grant Type':[], 'Current Value':[]})
+
 if not df.empty:
     st.dataframe(df)
 
@@ -19,7 +20,7 @@ num_shares = st.number_input('Enter Number of Shares', 0)
 grant_type = st.selectbox('Grant Type', ['RSUs', 'Options'])
 if st.button('Add Stock'):
     new_row = {'Ticker':ticker, 'Grant Date':start_date, 'Num Shares':num_shares, 'Grant Type':grant_type}
-    df = df.append(new_row, ignore_index=True)
+    df = df._append(new_row, ignore_index=True)
     st.write('second time')
     st.dataframe(df)
 # loop back until all options added button pressed
