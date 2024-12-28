@@ -13,18 +13,15 @@ df = pd.DataFrame({'Ticker':[], 'Grant Date':[], 'Num Shares':[], 'Grant Type':[
 if not df.empty:
     st.dataframe(df)
 
-def add_row(df, row):
-    df  = df._append(row, ignore_index=True)
-    
     
 ticker = st.text_input('Enter Stock Ticker')
 start_date = st.date_input('Stock Grant Date')
 num_shares = st.number_input('Enter Number of Shares', 0)
 grant_type = st.selectbox('Grant Type', ['RSUs', 'Options'], help="RSUs vest 1/4th on a yearly schedule. Options vest 1/4th on the first year and 1/48th every month following")
 new_row = {'Ticker':ticker, 'Grant Date':start_date, 'Num Shares':num_shares, 'Grant Type':grant_type}
-if st.button('Add Stock', on_click= add_row(df, new_row)):
+if st.button('Add Stock'):
     
-    # df = df._append(new_row, ignore_index=True)
+    df_new = df._append(new_row, ignore_index=True)
     st.write('second time')
     st.dataframe(df)
 # loop back until all options added button pressed
