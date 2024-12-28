@@ -17,8 +17,8 @@ if not df.empty:
 ticker = st.text_input('Enter Stock Ticker')
 start_date = st.date_input('Stock Grant Date')
 num_shares = st.number_input('Enter Number of Shares', 0)
-grant_type = st.selectbox('Grant Type', ['RSUs', 'Options'])
-if st.button('Add Stock'):
+grant_type = st.selectbox('Grant Type', ['RSUs', 'Options'], help="RSUs vest 1/4th on a yearly schedule. Options vest 1/4th on the first year and 1/48th every month following")
+if st.button('Add Stock',):
     new_row = {'Ticker':ticker, 'Grant Date':start_date, 'Num Shares':num_shares, 'Grant Type':grant_type}
     df = df._append(new_row, ignore_index=True)
     st.write('second time')
