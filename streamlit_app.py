@@ -25,7 +25,7 @@ if st.button('Add Stock'):
     st.write('second time')
     st.dataframe(df_new)
 # loop back until all options added button pressed
-
+st.button('chart')
 # pull up ticker prices
 # start_date = datetime(2020, 1, 1) 
 end_date = datetime.today()
