@@ -23,7 +23,7 @@ if st.button('Add Stock'):
     
     df_new = df._append(new_row, ignore_index=True)
     st.write('second time')
-    st.dataframe(df)
+    st.dataframe(df_new)
 # loop back until all options added button pressed
 
 # pull up ticker prices
