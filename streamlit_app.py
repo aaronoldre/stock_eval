@@ -21,9 +21,10 @@ grant_type = st.selectbox('Grant Type', ['RSUs', 'Options'], help="RSUs vest 1/4
 new_row = {'Ticker':ticker, 'Grant Date':start_date, 'Num Shares':num_shares, 'Grant Type':grant_type}
 if st.button('Add Stock'):
     
-    df_new = df._append(new_row, ignore_index=True)
+    df = df._append(new_row, ignore_index=True)
     st.write('second time')
-    st.dataframe(df_new)
+    st.write(new_row)
+    st.dataframe(df)
 # loop back until all options added button pressed
 st.button('chart')
 # pull up ticker prices
