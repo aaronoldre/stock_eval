@@ -15,7 +15,7 @@ if not df.empty:
 
 def add_row(df, row):
     df = df = df._append(row, ignore_index=True)
-
+    return df
     
 ticker = st.text_input('Enter Stock Ticker')
 start_date = st.date_input('Stock Grant Date')
