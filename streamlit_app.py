@@ -82,30 +82,34 @@ def shares_current_value(ticker, num_shares, grant_date, grant_type):
 st.title(":dollar: Stock as Compenstation Evaluator :chart:")
 st.write("use to find high points in RSUs and Options when they vest")
 
-# prompt user for stocks and write to data frame
+# create dataframe to store stock values and write it to the session state
 df = pd.DataFrame({'Ticker':[], 'Grant Date':[], 'Num Shares':[], 'Grant Type':[], 'Vested Shares':[], 'Current Value':[]})
 
-if not df.empty:
-    st.dataframe(df)
+if "data" not in st.session_state:
+    st.session_state.data = df
 
-    
+# prompt user for stocks and write to data frame    
 ticker = st.text_input('Enter Stock Ticker')
 grant_date = st.date_input('Stock Grant Date')
 num_shares = st.number_input('Enter Number of Shares', 0)
 grant_type = st.selectbox('Grant Type', ['RSUs', 'Options'], help="RSUs vest 1/4th on a yearly schedule. Options vest 1/4th on the first year and 1/48th every month following")
-vested_shares, current_value = shares_current_value(ticker, num_shares, grant_date, grant_type)
-new_row = {'Ticker':ticker, 'Grant Date':grant_date, 'Num Shares':num_shares, 'Grant Type':grant_type, 'Vested Shares': vested_shares, 'Current Value': current_value}
+
 if st.button('Add Stock'):
+    if ticker and grant_date and num_shares and grant_type:
+        vested_shares, current_value = shares_current_value(ticker, num_shares, grant_date, grant_type)
+        new_row = pd.Series({'Ticker':ticker, 'Grant Date':grant_date, 'Num Shares':num_shares, 'Grant Type':grant_type, 'Vested Shares': vested_shares, 'Current Value': current_value})
+        if len(st.session_state.data) == 0:
+            then st.session_state.data = new_row.to_frame().T
+        else:
+            st.session_state.data = pd.concat([st.session_state.data, new_row.to_frame().T], ignore_index= True)
+    else:
+        st.error("Please fill out all fields!")
     
-    df = df._append(new_row, ignore_index=True)
-    st.write('second time')
-    st.write(new_row)
-    st.dataframe(df)
 # loop back until all options added button pressed
-st.button('chart')
+#st.button('chart')
 # pull up ticker prices
 # start_date = datetime(2020, 1, 1) 
-end_date = date.today()
+#end_date = date.today()
 
 # try:
 #     stock_data = yf.download(ticker, start = start_date, 
