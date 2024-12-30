@@ -59,7 +59,7 @@ def shares_current_value(ticker, num_shares, grant_date, grant_type):
         else:
             num_shares = 0
         current_value = num_shares * strike_price
-        return num_shares, strike_price
+        return num_shares, current_value
     elif grant_type == 'Options':
         grant_price_df =  yf.download(ticker, start = grant_date, multi_level_index = False)
         grant_price = grant_price_df['Open'].iloc[0]
@@ -99,7 +99,7 @@ if st.button('Add Stock'):
         vested_shares, current_value = shares_current_value(ticker, num_shares, grant_date, grant_type)
         new_row = pd.Series({'Ticker':ticker, 'Grant Date':grant_date, 'Num Shares':num_shares, 'Grant Type':grant_type, 'Vested Shares': vested_shares, 'Current Value': current_value})
         if len(st.session_state.data) == 0:
-            then st.session_state.data = new_row.to_frame().T
+            st.session_state.data = new_row.to_frame().T
         else:
             st.session_state.data = pd.concat([st.session_state.data, new_row.to_frame().T], ignore_index= True)
     else:
