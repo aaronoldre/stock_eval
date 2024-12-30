@@ -81,6 +81,7 @@ def shares_current_value(ticker, num_shares, grant_date, grant_type):
 # Title
 st.title(":dollar: Stock as Compenstation Evaluator :chart:")
 st.write("use to find high points in RSUs and Options when they vest")
+st.write('main')
 
 # create dataframe to store stock values and write it to the session state
 df = pd.DataFrame({'Ticker':[], 'Grant Date':[], 'Num Shares':[], 'Grant Type':[], 'Vested Shares':[], 'Current Value':[]})
