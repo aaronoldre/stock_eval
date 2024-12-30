@@ -103,7 +103,7 @@ if st.button('Add Stock'):
             st.session_state.data = new_row.to_frame().T
         else:
             st.session_state.data = pd.concat([st.session_state.data, new_row.to_frame().T], ignore_index= True)
-    st.dataframe(session_state.data)
+    st.dataframe(st.session_state.data)
     else:
         st.error("Please fill out all fields!")
     
