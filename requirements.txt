@@ -1,6 +1,5 @@
 # requirements.txt
 datetime
-math
 pandas
 snowflake-snowpark-python
 streamlit

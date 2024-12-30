@@ -1,6 +1,6 @@
-from datetime import date, timedelta
+from datetime import date
 import math
-import matplotlib.pyplot as plt 
+##import matplotlib.pyplot as plt 
 import pandas as pd
 import streamlit as st
 import yfinance as yf 
